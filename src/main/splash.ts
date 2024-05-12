@@ -4,7 +4,7 @@
  * Copyright (c) 2024 Vendicated and Vencord contributors
  */
 
-import { BrowserWindow, webContents } from "electron";
+import { BrowserWindow } from "electron";
 import { join } from "path";
 import { SplashProps } from "shared/browserWinProperties";
 import { ICON_PATH, VIEW_DIR } from "shared/paths";
@@ -39,13 +39,12 @@ export function createSplashWindow(startMinimized = false) {
         splash.webContents.executeJavaScript(`
             document.getElementById("animation").src = "splash-animation://img";
         `);
-    }
-    else {
-        splash.webContents.insertCSS(`img {image-rendering: pixelated}`)
+    } else {
+        splash.webContents.insertCSS(`img {image-rendering: pixelated}`);
         splash.webContents.executeJavaScript(`
             document.getElementById("animation").src = "../shiggy.gif";
         `);
     }
-    
+
     return splash;
 }
